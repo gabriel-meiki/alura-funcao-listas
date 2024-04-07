@@ -11,7 +11,8 @@ mudarTexto('p', 'Escolha um número entre 1 e 10')
 
 // Função sem parâmetro que não retorna algo
 function verificarChute(){
-    console.log(numeroSecreto)
+    let chute = document.querySelector('input').value; // Pega o valor que é colocado dentro de um input 
+    console.log(chute == numeroSecreto);
 };
 
 // Função sem parâmetro que retorna um valor
