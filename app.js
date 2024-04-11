@@ -6,8 +6,7 @@ function mudarTexto(tag, texto){
     corpo.innerHTML = texto;
 };
 
-mudarTexto('h1', 'Jogo do número secreto');
-mudarTexto('p', 'Escolha um número entre 1 e 10')
+exibirMensagemInicial();
 
 // Função sem parâmetro que não retorna algo
 function verificarChute(){
@@ -15,8 +14,9 @@ function verificarChute(){
     if (chute == numeroSecreto){
         mudarTexto('h1', 'Ganhou!!!!');
         let palavraTentativa = tentativas > 1 ? 'tentativas' : 'tentativa';
-        let mensagemTentativas = `Você descobriu o número secreto com ${tentativas} ${palavraTentativa}.`
+        let mensagemTentativas = `Você descobriu o número secreto com ${tentativas} ${palavraTentativa}.`;
         mudarTexto('p', mensagemTentativas);
+        document.getElementById('reiniciar').removeAttribute('disabled');
         
     } else {
         if (chute > numeroSecreto){
@@ -38,4 +38,17 @@ function gerarNumeroAleatorio(){
 function limparCampo(){
     chute = document.querySelector('input');
     chute.value = '';
+}
+
+function reiniciarJogo(){
+    tentativas = 1;
+    numeroSecreto = gerarNumeroAleatorio();
+    limparCampo();
+    exibirMensagemInicial();
+    document.getElementById('reiniciar').setAttribute('disabled', true);
+}
+
+function exibirMensagemInicial(){
+    mudarTexto('h1', 'Jogo do número secreto');
+    mudarTexto('p', 'Escolha um número entre 1 e 10');
 }
