@@ -7,6 +7,7 @@ let tentativas = 1;
 function mudarTexto(tag, texto){
     corpo = document.querySelector(tag);
     corpo.innerHTML = texto;
+    responsiveVoice.speak(texto, 'Brazilian Portuguese Female', {rate:1.2});
 };
 
 exibirMensagemInicial();
