@@ -1,7 +1,8 @@
 let listaDeNumerosSorteados = []; // Criando uma lista vazia
-
+let numeroLimite = 10;
 let numeroSecreto = gerarNumeroAleatorio(); //Guardando o valor aleatório em uma variável
 let tentativas = 1;
+
 // Função com parâmetro, mas não retorna algo
 function mudarTexto(tag, texto){
     corpo = document.querySelector(tag);
@@ -34,7 +35,12 @@ function verificarChute(){
 
 // Função sem parâmetro que retorna um valor
 function gerarNumeroAleatorio(){
-    let numeroEscolhido =  parseInt(Math.random() * 10 + 1); // Colocando valor aleatório gerado dentro de uma variável
+    let numeroEscolhido =  parseInt(Math.random() * numeroLimite + 1); // Colocando valor aleatório gerado dentro de uma variável
+
+    if (listaDeNumerosSorteados.length == numeroLimite){
+        listaDeNumerosSorteados = []; // Esvaziando a lista caso ela já tenha sorteado todos os números possíveis.
+    }
+
     if (listaDeNumerosSorteados.includes(numeroEscolhido)) {
         return gerarNumeroAleatorio(); // Recursividade
     } else {
@@ -60,5 +66,5 @@ function reiniciarJogo(){
 
 function exibirMensagemInicial(){
     mudarTexto('h1', 'Jogo do número secreto');
-    mudarTexto('p', 'Escolha um número entre 1 e 10');
+    mudarTexto('p', `Escolha um número entre 1 e ${numeroLimite}`);
 }
